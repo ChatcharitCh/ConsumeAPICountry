@@ -4,6 +4,7 @@
  */
 package com.project.countriesapi;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +23,11 @@ public class CountryController {
         return "Hello World";
     }
     
-    @RequestMapping("/country")
+    @RequestMapping("/country/{isoName}")
     @ResponseBody
-    private String getCountry(){
+    private String getCountry(@PathVariable String isoName){
         
-        String uri = "https://topups.reloadly.com/countries/TH";
+        String uri = "https://topups.reloadly.com/countries/" + isoName ;
         RestTemplate restTemplate = new RestTemplate();
         
         Country country = restTemplate.getForObject(uri, Country.class);

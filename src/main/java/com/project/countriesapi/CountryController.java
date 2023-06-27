@@ -36,7 +36,7 @@ public class CountryController {
         System.out.println("Country" + country);
         
         ModelAndView modelAndView = new ModelAndView("country");
-        modelAndView.addObject("country", country);
+        modelAndView.addObject("country", country );
         
         
         return modelAndView;

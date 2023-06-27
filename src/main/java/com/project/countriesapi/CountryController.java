@@ -4,11 +4,13 @@
  */
 package com.project.countriesapi;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -25,7 +27,7 @@ public class CountryController {
     
     @RequestMapping("/country/{isoName}")
     @ResponseBody
-    private String getCountry(@PathVariable String isoName){
+    private ModelAndView getCountry(@PathVariable String isoName, Model model){
         
         String uri = "https://topups.reloadly.com/countries/" + isoName ;
         RestTemplate restTemplate = new RestTemplate();
@@ -33,15 +35,10 @@ public class CountryController {
         Country country = restTemplate.getForObject(uri, Country.class);
         System.out.println("Country" + country);
         
-        System.out.println("isoName = " + country.getIsoName());
-        System.out.println("name = " + country.getName());
-        System.out.println("continent = " + country.getContinent());
-        System.out.println("currencyCode = " + country.getCurrencyCode());
-        System.out.println("currencyName = " + country.getCurrencyName());
-        System.out.println("currencySymbol = " + country.getCurrencySymbol());
-        System.out.println("flag = " + country.getFlag());
-        System.out.println("callingCodes = " + country.getCallingCodes());
+        ModelAndView modelAndView = new ModelAndView("country");
+        modelAndView.addObject("country", country);
         
-        return "Contry detail page.";
+        
+        return modelAndView;
     }
 }

@@ -24,6 +24,19 @@ public class Country {
     public Country() {
     }
 
+    @Override
+    public String toString() {
+        return "isoName = " + isoName +
+                    "\nname = " + name + 
+                    "\ncontinent = " + continent + 
+                    "\ncurrencyCode = " + currencyCode + 
+                    "\ncurrencyName = " + currencyName + 
+                    "\ncurrencySymbol = " + currencySymbol + 
+                    "\nflag = " + flag + 
+                    "\ncallingCodes = " + callingCodes +"\n";
+    }
+
+    
     
     public Country(String isoName, String name, String continent, String currencyCode, String currencyName, String currencySymbol, String flag, List<String> callingCodes) {
         this.isoName = isoName;

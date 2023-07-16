@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.project.countriesapi;
 
 import org.springframework.ui.Model;
@@ -19,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class CountryController {
     
-    @RequestMapping("/hello")
+    @RequestMapping("")
     @ResponseBody
     private String hello(){
         return "Hello World";
@@ -33,12 +30,12 @@ public class CountryController {
         RestTemplate restTemplate = new RestTemplate();
         
         Country country = restTemplate.getForObject(uri, Country.class);
-        System.out.println("Country" + country);
+//        System.out.println("Country" + country);
         
         ModelAndView modelAndView = new ModelAndView("country");
         modelAndView.addObject("country", country );
         
-        
+        System.out.println(country.toString());
         return modelAndView;
     }
 }
